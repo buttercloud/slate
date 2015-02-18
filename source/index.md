@@ -3,12 +3,9 @@ title: API Reference
 
 language_tabs:
   - shell
-  - ruby
-  - python
 
 toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href='#'>admin@theregistrationsystem.com</a>
 
 includes:
   - errors
@@ -18,151 +15,290 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the myTRS API! You can use our API to create registrants, and grab information about users and registrants on your myTRS event.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+We have language bindings in Shell. You can view code examples in the dark area to the right.
 
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
+myTRS uses API keys to allow access to your data on the API. You can register a new myTRS API key by contact us at support@theregistrationsystem.com.
+
 > To authorize, use this code:
 
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
 ```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
+# With shell via GET access_token
+  curl https://my-trs.com/api/v1/registrations/1.json?access_token=<mytrs-api-key>
+
+# With shell via HTTP Header
+  curl -IH "Authorization: Token token=<mytrs-api-key>" "api_endpoint_here"
+
 ```
 
-> Make sure to replace `meowmeowmeow` with your API key.
+> Make sure to replace `<mytrs-api-key>` with your API key.
 
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
+<aside class="warning">All requests without or with an invalid access_token will return an 402 Unauthorized error.</aside>
 
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace `meowmeowmeow` with your personal API key.
+<aside class="success">
+Your API key gives you access to all of your sites under myTRS.
 </aside>
 
-# Kittens
 
-## Get All Kittens
 
-```ruby
-require 'kittn'
+# Registrations
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
+## Get a Specific Registration
 
 ```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
+curl "http://my-trs.com/api/v1/registrations/1.json"
+  -H "Authorization: <mytrs-api-key>"
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+{  
+   "id":1,
+   "registrant_type":"Current TRS Clients",
+   "checked_in_at": null,
+   "user":{  
+      "id":22,
+      "first_name":"Homer",
+      "last_name":"Simpson",
+      "email":"hsimpson@thesimpsons.com",
+      "address":{  
+         "line1":"742 Evergreen Terrace",
+         "line2":"Bldg B",
+         "city":"Springfield",
+         "state":"TX",
+         "zip_code":"22111",
+         "country":"US",
+         "phone":null,
+         "company_name":null
+      }
+   },
+   "custom_fields":[  
+      {  
+         "name":"Organization/Company",
+         "value":"The Simpsons"
+      },
+      {  
+         "name":"TRS Client History",
+         "value":"1 Year"
+      },
+      {  
+         "name":"Registration Challenges",
+         "value":"n/a"
+      }
+   ],
+   "registration_items":[  
+      {  
+         "id":42,
+         "name":"Aug 1st, 2014 from 02:00 PM to 03:00 PM"
+      },
+      {  
+         "id":43,
+         "name":"Aug 5th, 2014 from 03:00 PM to 05:00 PM"
+      }
+   ]
+}
 ```
-
-This endpoint retrieves all kittens.
+> Custom fields are dynamically configured by the client and change depending on their site's configuration.
 
 ### HTTP Request
 
-`GET http://example.com/kittens`
+`GET https://my-trs.com/api/v1/registrations/1.json`
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Description
+--------- | -----------
+id | The ID of the registration to retrieve
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+Remember — include '.json' at the end of your endpoint to ensure you get the right response back!
 </aside>
 
-## Get a Specific Kitten
+## Find the Latest Registration Belonging to the Same User
 
-```ruby
-require 'kittn'
+Assuming you have two sites configured on your myTRS account, and the registrant you're requesting has signed up for both. This action will return the newest registration regardless of which registration ID is provided. The response will also include the "requested_id" parameter if the registration returned is not the same one as the registration requested.
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
 
 ```shell
-curl "http://example.com/api/kittens/3"
-  -H "Authorization: meowmeowmeow"
+curl "https://my-trs.com/api/v1/registrations/1.json/latest"
+  -H "Authorization: <mytrs-api-key>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "requested_id": 1,
+   "id": 2,
+   "registrant_type":"Current TRS Clients",
+   "checked_in_at": null,
+   "user":{  
+      "id":522,
+      "first_name":"Homer",
+      "last_name":"Simpson",
+      "email":"homer@thesimpsons.com",
+      "address":{  
+         "line1":"742 Evergreen Terrace",
+         "line2":"Bldg B",
+         "city":"Springfield",
+         "state":"TX",
+         "zip_code":"22111",
+         "country":"US",
+         "phone":null,
+         "company_name":null
+      }
+   },
+   "custom_fields":[  
+      {  
+         "name":"Organization/Company",
+         "value":"The Simpsons"
+      },
+      {  
+         "name":"TRS Client History",
+         "value":"1 Year"
+      },
+      {  
+         "name":"Registration Challenges",
+         "value":"n/a"
+      }
+   ],
+   "registration_items":[  
+      {  
+         "id":42,
+         "name":"Aug 1st, 2014 from 02:00 PM to 03:00 PM"
+      },
+      {  
+         "id":43,
+         "name":"Aug 5th, 2014 from 03:00 PM to 05:00 PM"
+      }
+   ]
+}
+```
+
+### HTTP Request
+
+`GET https://my-trs.com/api/v1/registrations/1.json/latest`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the registration to retrieve
+
+
+## Update Registrant's Check-In Time
+
+This will update the checked_in_at field with the current datetime. Once the checked_in_at has been set for a registration, it cannot be changed. Consecutive requests will be ignored and return a 409 Conflict response code.
+
+
+```shell
+curl "https://my-trs.com/api/v1/registrations/1.json/check_in"
+  -H "Authorization: <mytrs-api-key>"
+```
+
+> The above command returns JSON structured like this:
+
+```json
+{  
+   "id":1,
+   "registrant_type":"Current TRS Clients",
+   "checked_in_at": "2014-10-01T13:55:54.000Z",
+   "user":{  
+   ...
+```
+
+### HTTP Request
+
+`PUT https://my-trs.com/api/v1/registrations/1.json/check_in`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+ID | The ID of the registration to check in
+
+
+## Create a User & Registration Combo
+
+This endpoint allows you to create a combination of a user and registration. "Users" on myTRS are individuals that can sign up to multiple events under the same client. The benefits of being a user allow pre-population of address information when registering for an event. A "Registration" represents a single user sign up on a specific site. The registration includes activities and time slots that the user signed up for.
+
+A site_id is required to ensure that both a user and registration can be created. The authenticated URL provided back allows you to redirect the user in a "logged in" state and send them directly to select their activities.
+
+```shell
+curl -X POST -H "Content-Type: application/json" "https://my-trs.com/api/v1/registrations?access_token=<mytrs-api-key>" -d '{
+     "create_user": "true",
+     "registration": { "site_id": 1 },
+     "user": {                                                                                                                         
+       "email": "petergriffin@familyguy.com",    
+       "first_name": "Peter",
+       "last_name": "Griffin"                                                                                                                                               
+     },
+     "address": { 
+        "line1": "123 Spooner Street",
+        "city" : "Boston",
+        "state": "MA",
+        "country": "US", 
+        "zip_code": "02314"
+   },
+   "return_authenticated_url": "true"
+}'
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "user": {
+    "client_id": 1,
+    "id": 34572,
+    "email": "petergriffin@familyguy.com",
+    "created_at": "2015-02-18T14:56:34.000Z",
+    "updated_at": "2015-02-18T14:56:34.000Z",
+    "first_name": "Peter",
+    "last_name": "Griffin",
+    "invitation_token": null,
+    "invitation_created_at": null,
+    "invitation_sent_at": null,
+    "invitation_accepted_at": null,
+    "invitation_limit": null,
+    "invited_by_id": null,
+    "invited_by_type": null,
+    "invitations_count": 0,
+    "group_leader": false
+  },
+  "authenticated_url": "https://test.my-trs.com/select_activities?auth_token=xszL4DjnrjfiFyeQAshn"
 }
+
 ```
 
-This endpoint retrieves a specific kitten.
+The "authenticated_url" parameter above provides a one-time use address that will log your newly created registrant in and allow them to select activities. If your token has expired, you can request a new one by re-POSTING to the above endpoint with an existing email address.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+<aside class="warning">Authenticated URLs are one-time use and expire after a period of time. Please avoid storing authentication tokens!</aside>
+
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST https://my-trs.com/api/v1/registrations?access_token=<mytrs-api-key>`
 
 ### URL Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the cat to retrieve
+Parameter | Description | Required?
+--------- | ----------- | -----------
+create_user | Whether to create a user or not | Yes (must pass in true)
+registration -> site_id | The TRS site ID to create this registration for | Yes
+user -> email | User's email address | Yes
+user -> first_name | User's first name | Yes
+user -> last_name  | User's last name  | Yes
+address -> line1   | User's street address 1 | site-dependent
+address -> line2   | User's street address 2 | site-dependent
+address -> city   | User's address city | site-dependent
+address -> state   | User's address state code (ex: NY) | site-dependent
+address -> country   | User's address country code (ex: US) | site-dependent
+address -> zip_code   | User's address 5 digit zip code | site-dependent
+
 
