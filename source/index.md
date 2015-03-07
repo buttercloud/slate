@@ -235,10 +235,20 @@ myTRS clients can build custom fields as part of their site. They're often used 
 
 If your myTRS site includes custom fields, you can pre-fill these values for registrants by passing in a "custom_fields" object where the key represents the *exact* field name, and the value is the field value you want to enter for this registrant.
 
+#### Authenticated URLs
+The "authenticated_url" parameter above provides a one-time use address that will log your newly created registrant in and allow them to select activities. If your token has expired, you can request a new one by re-POSTING to the above endpoint with an existing email address.
+
+<aside class="warning">Authenticated URLs are one-time use and expire after a period of time. Please avoid storing authentication tokens!</aside>
+
+
+
 ```shell
 curl -X POST -H "Content-Type: application/json" "https://my-trs.com/api/v1/registrations?access_token=<mytrs-api-key>" -d '{
      "create_user": "true",
-     "registration": { "site_id": 1 },
+     "registration": { 
+       "site_id": 1, 
+       "registrant_type_name": "Attendees" 
+     },
      "user": {                                                                                                                         
        "email": "petergriffin@familyguy.com",    
        "first_name": "Peter",
@@ -285,11 +295,6 @@ curl -X POST -H "Content-Type: application/json" "https://my-trs.com/api/v1/regi
 }
 
 ```
-
-The "authenticated_url" parameter above provides a one-time use address that will log your newly created registrant in and allow them to select activities. If your token has expired, you can request a new one by re-POSTING to the above endpoint with an existing email address.
-
-<aside class="warning">Authenticated URLs are one-time use and expire after a period of time. Please avoid storing authentication tokens!</aside>
-
 
 ### HTTP Request
 
