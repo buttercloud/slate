@@ -229,6 +229,12 @@ This endpoint allows you to create a combination of a user and registration. "Us
 
 A site_id is required to ensure that both a user and registration can be created. The authenticated URL provided back allows you to redirect the user in a "logged in" state and send them directly to select their activities.
 
+
+#### Custom Fields
+myTRS clients can build custom fields as part of their site. They're often used to collect extra information from registrants on sign up.
+
+If your myTRS site includes custom fields, you can pre-fill these values for registrants by passing in a "custom_fields" object where the key represents the *exact* field name, and the value is the field value you want to enter for this registrant.
+
 ```shell
 curl -X POST -H "Content-Type: application/json" "https://my-trs.com/api/v1/registrations?access_token=<mytrs-api-key>" -d '{
      "create_user": "true",
@@ -244,8 +250,12 @@ curl -X POST -H "Content-Type: application/json" "https://my-trs.com/api/v1/regi
         "state": "MA",
         "country": "US", 
         "zip_code": "02314"
-   },
-   "return_authenticated_url": "true"
+     },
+     "custom_fields": {
+        "T-Shirt Size": "Medium",
+        "Hat Size": "X-Large"
+     },
+     "return_authenticated_url": "true"
 }'
 ```
 
@@ -300,5 +310,6 @@ address -> city   | User's address city | site-dependent
 address -> state   | User's address state code (ex: NY) | site-dependent
 address -> country   | User's address country code (ex: US) | site-dependent
 address -> zip_code   | User's address 5 digit zip code | site-dependent
+custom_fields     | A key/value collection of custom fields and values for this registrant | No
 
 
