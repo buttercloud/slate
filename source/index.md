@@ -105,7 +105,7 @@ curl "https://my-trs.com/api/v1/registrations.xml"
   -H "Authorization: <mytrs-api-key>"
 ```
 
-> The above command returns JSON structured like this:
+> The above command returns XML structured like this:
 
 
 ````xml
