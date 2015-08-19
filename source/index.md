@@ -47,6 +47,127 @@ Your API key gives you access to all of your sites under myTRS.
 
 # Registrations
 
+## Get All Registrations
+
+```shell
+curl "http://my-trs.com/api/v1/registrations.json"
+  -H "Authorization: <mytrs-api-key>"
+```
+
+> The above command returns JSON structured like this:
+
+````json
+[
+   {
+      "id":99302,
+      "registrant_type":null,
+      "checked_in_at":null,
+      "created_at":"03:45 PM on Tue, Feb 24th, 15",
+      "user":{
+         "id":35727,
+         "first_name":"Sarah",
+         "last_name":"Gret",
+         "emaiil":"test@example.com",
+         "address":{
+            "line1":"7929 Spooner Street",
+            "line2":"",
+            "city":"Indianapolis",
+            "state":"IN",
+            "zip_code":"46268",
+            "country":"US",
+            "phone":"317-444-9999",
+            "company_name":null
+         }
+      },
+      "custom_fields":[
+         {
+            "name":"T-Shirt Size",
+            "value":"Small, Medium, Large, XLarge, XXLarge, XXXLarge"
+         }
+      ],
+      "registration_items":[
+         {
+            "id":"t10016",
+            "name":"06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - "
+         },
+         {
+            "id":"t9651",
+            "name":"Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training "
+         }
+      ]
+   }
+]
+...
+````
+
+```shell
+curl "https://my-trs.com/api/v1/registrations.xml"
+  -H "Authorization: <mytrs-api-key>"
+```
+
+> The above command returns JSON structured like this:
+
+
+````xml
+<registrations type="array">
+  <registration>
+    <id type="integer">9950131231</id>
+    <registrant-type nil="true"/>
+    <checked-in-at nil="true"/>
+    <created-at type="dateTime">2015-02-24T15:45:45Z</created-at>
+    <user>
+      <id type="integer">35727</id>
+      <first-name>Sarah</first-name>
+      <last-name>Gret</last-name>
+      <emaiil>test@example.com</emaiil>
+      <address>
+        <line1>7929 N. Spooner Street</line1>
+        <line2></line2>
+        <city>Indianapolis</city>
+        <state>IN</state>
+        <zip-code>46268</zip-code>
+        <country>US</country>
+        <phone>317-888-1144</phone>
+        <company-name nil="true"/>
+      </address>
+    </user>
+    <custom-fields type="array">
+      <custom-field>
+        <name>T-Shirt Size</name>
+        <value>Small, Medium, Large, XLarge, XXLarge, XXXLarge</value>
+      </custom-field>
+    </custom-fields>
+    <registration-items type="array">
+      <registration-item>
+        <id>t10016</id>
+        <name>06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - </name>
+      </registration-item>
+      <registration-item>
+        <id>t9651</id>
+        <name>Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training - </name>
+      </registration-item>
+    </registration-items>
+  </registration>
+  ...
+````
+
+__HTTP REQUEST__
+
+This resource supports JSON and XML responses.
+
+JSON ````GET https://my-trs.com/api/v1/registrations.json````
+
+XML ````GET https://my-trs.com/api/v1/registrations.xml````
+
+__QUERY PARAMETERS__
+
+|Parameters|Type|Description|Example|
+|:------------- |:-------------:|:-----:|:-----:|
+|site_id|optional|Filter results by a specific site | ````site_id=183````|
+|starts_at|optional| Filter results by a date range. If you use this, you also have to use 'ends_at'|````starts_at=2015-02-1T12:00:00+00:00````|
+|ends_at|optional| Filter results by a date range. If you use this, you also have to use 'starts_at'|````ends_at=2015-02-25T16:00:00+00:00````|
+
+
 ## Get a Specific Registration
 
 ```shell
