@@ -50,7 +50,7 @@ Your API key gives you access to all of your sites under myTRS.
 ## Get All Registrations
 
 ```shell
-curl "http://my-trs.com/api/v1/registrations.json"
+curl "https://my-trs.com/api/v1/registrations.json"
   -H "Authorization: <mytrs-api-key>"
 ```
 
@@ -171,7 +171,7 @@ __QUERY PARAMETERS__
 ## Get a Specific Registration
 
 ```shell
-curl "http://my-trs.com/api/v1/registrations/1.json"
+curl "https://my-trs.com/api/v1/registrations/1.json"
   -H "Authorization: <mytrs-api-key>"
 ```
 
