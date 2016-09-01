@@ -69,6 +69,7 @@ curl "https://my-trs.com/api/v1/registrations.json"
          "id":35727,
          "first_name":"Sarah",
          "last_name":"Gret",
+         "custom_status": "Checked",
          "email":"test@example.com",
          "address":{
             "line1":"7929 Spooner Street",
@@ -83,6 +84,7 @@ curl "https://my-trs.com/api/v1/registrations.json"
       },
       "custom_fields":[
          {
+            "id": 5,
             "name":"T-Shirt Size",
             "value":"Small, Medium, Large, XLarge, XXLarge, XXXLarge"
          }
@@ -206,14 +208,17 @@ curl "https://my-trs.com/api/v1/registrations/1.json"
    },
    "custom_fields":[  
       {  
+         "id": 581,
          "name":"Organization/Company",
          "value":"The Simpsons"
       },
       {  
+         "id": 582,
          "name":"TRS Client History",
          "value":"1 Year"
       },
       {  
+         "id": 588,
          "name":"Registration Challenges",
          "value":"n/a"
       }
@@ -283,14 +288,17 @@ curl "https://my-trs.com/api/v1/registrations/1.json/latest"
    },
    "custom_fields":[  
       {  
+         "id": 581,
          "name":"Organization/Company",
          "value":"The Simpsons"
       },
       {  
+         "id": 582,
          "name":"TRS Client History",
          "value":"1 Year"
       },
       {  
+         "id": 588,
          "name":"Registration Challenges",
          "value":"n/a"
       }
@@ -445,4 +453,62 @@ address -> country   | User's address country code (ex: US) | site-dependent
 address -> zip_code   | User's address 5 digit zip code | site-dependent
 custom_fields     | A key/value collection of custom fields and values for this registrant | No
 
+
+
+# Sites
+
+## Get All Sites for the Current Client
+
+```shell
+curl "https://my-trs.com/api/v1/sites.json"
+  -H "Authorization: Token token=<mytrs-api-key>"
+```
+
+> The above command returns JSON structured like this:
+
+````json
+[
+   {
+      "id":5,
+      "subdomain": "mytrswebinars",
+      "client_id":1,
+      "site_groups":[
+        {
+          "id": "5",
+          "name": "Group A"
+        },
+        {
+          "id": "7",
+          "name": "Group B"
+        }
+      ]
+   },
+   {
+      "id":8,
+      "subdomain": "mytrs",
+      "client_id":1,
+      "site_groups": [
+        {
+          "id": "5",
+          "name": "Group A"
+        },
+        {
+          "id": "7",
+          "name": "Group B"
+        }
+      ]
+   }
+]
+````
+
+__HTTP REQUEST__
+
+This resource supports returning all sites and associated site groups belonging to the current client. The current client is determined based on your API token.
+
+JSON ````GET https://my-trs.com/api/v1/sites.json````
+
+
+__QUERY PARAMETERS__
+
+n/a
 
