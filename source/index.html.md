@@ -51,7 +51,7 @@ Your API key gives you access to all of your sites under myTRS.
 
 ```shell
 curl "https://my-trs.com/api/v1/registrations.json"
-  -H "Authorization: <mytrs-api-key>"
+  -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
 > The above command returns JSON structured like this:
@@ -63,11 +63,13 @@ curl "https://my-trs.com/api/v1/registrations.json"
       "registrant_type":null,
       "checked_in_at":null,
       "created_at":"03:45 PM on Tue, Feb 24th, 15",
+      "site_id": 3,
+      "client_id": 5,
       "user":{
          "id":35727,
          "first_name":"Sarah",
          "last_name":"Gret",
-         "emaiil":"test@example.com",
+         "email":"test@example.com",
          "address":{
             "line1":"7929 Spooner Street",
             "line2":"",
@@ -102,7 +104,7 @@ curl "https://my-trs.com/api/v1/registrations.json"
 
 ```shell
 curl "https://my-trs.com/api/v1/registrations.xml"
-  -H "Authorization: <mytrs-api-key>"
+  -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
 > The above command returns XML structured like this:
@@ -119,7 +121,7 @@ curl "https://my-trs.com/api/v1/registrations.xml"
       <id type="integer">35727</id>
       <first-name>Sarah</first-name>
       <last-name>Gret</last-name>
-      <emaiil>test@example.com</emaiil>
+      <email>test@example.com</email>
       <address>
         <line1>7929 N. Spooner Street</line1>
         <line2></line2>
@@ -164,6 +166,7 @@ __QUERY PARAMETERS__
 |Parameters|Type|Description|Example|
 |:------------- |:-------------:|:-----:|:-----:|
 |site_id|optional|Filter results by a specific site | ````site_id=183````|
+|email|optional|Filter results by a specific email address on the registration | ````email=test@my-trs.com````|
 |starts_at|optional| Filter results by a date range. If you use this, you also have to use 'ends_at'|````starts_at=2015-02-1T12:00:00+00:00````|
 |ends_at|optional| Filter results by a date range. If you use this, you also have to use 'starts_at'|````ends_at=2015-02-25T16:00:00+00:00````|
 
@@ -172,7 +175,7 @@ __QUERY PARAMETERS__
 
 ```shell
 curl "https://my-trs.com/api/v1/registrations/1.json"
-  -H "Authorization: <mytrs-api-key>"
+  -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
 > The above command returns JSON structured like this:
@@ -182,6 +185,8 @@ curl "https://my-trs.com/api/v1/registrations/1.json"
    "id":1,
    "registrant_type":"Current TRS Clients",
    "checked_in_at": null,
+   "site_id": 3,
+   "client_id": 5,
    "user":{  
       "id":22,
       "first_name":"Homer",
@@ -247,7 +252,7 @@ Assuming you have two sites configured on your myTRS account, and the registrant
 
 ```shell
 curl "https://my-trs.com/api/v1/registrations/1.json/latest"
-  -H "Authorization: <mytrs-api-key>"
+  -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
 > The above command returns JSON structured like this:
@@ -319,7 +324,7 @@ This will update the checked_in_at field with the current datetime. Once the che
 
 ```shell
 curl "https://my-trs.com/api/v1/registrations/1.json/check_in"
-  -H "Authorization: <mytrs-api-key>"
+  -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
 > The above command returns JSON structured like this:
