@@ -191,6 +191,7 @@ curl "https://my-trs.com/api/v1/registrations/1.json"
       "id":22,
       "first_name":"Homer",
       "last_name":"Simpson",
+      "custom_status": "Checked",
       "email":"hsimpson@thesimpsons.com",
       "address":{  
          "line1":"742 Evergreen Terrace",
@@ -267,6 +268,7 @@ curl "https://my-trs.com/api/v1/registrations/1.json/latest"
       "id":522,
       "first_name":"Homer",
       "last_name":"Simpson",
+      "custom_status": "Checked",
       "email":"homer@thesimpsons.com",
       "address":{  
          "line1":"742 Evergreen Terrace",
