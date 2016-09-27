@@ -171,8 +171,8 @@ __QUERY PARAMETERS__
 |email|optional|Filter results by a specific email address on the registration | ````email=test@my-trs.com````|
 |starts_at|optional| Filter results by a date range. If you use this, you also have to use 'ends_at'|````starts_at=2015-02-1T12:00:00+00:00````|
 |ends_at|optional| Filter results by a date range. If you use this, you also have to use 'starts_at'|````ends_at=2015-02-25T16:00:00+00:00````|
-|updated_at_gteq|optional| Filter registrations by when they were last updated (start date). If you use this, you also have to use 'updated_at_lteq'|````t=2015-02-1T12:00:00+00:00````|
-|updated_at_lteq|optional| Filter registrations by when they were last updated (end date). If you use this, you also have to use 'updated_at_gteq'|````t=2015-03-1T12:00:00+00:00````|
+|updated_at_gteq|optional| Filter registrations by when they were last updated (start date). If you use this, you also have to use 'updated_at_lteq'|````updated_at_gteq=2015-02-1T12:00:00+00:00````|
+|updated_at_lteq|optional| Filter registrations by when they were last updated (end date). If you use this, you also have to use 'updated_at_gteq'|````updated_at_lteq=2015-03-1T12:00:00+00:00````|
 
 
 ## Get a Specific Registration
