@@ -28,7 +28,7 @@ myTRS uses API keys to allow access to your data on the API. You can register a 
 
 ```shell
 # With shell via GET access_token
-  curl https://api.my-trs.com/api/v1/registrations/1.json?access_token=<mytrs-api-key>
+  curl https://app.my-trs.com/api/v1/registrations/1.json?access_token=<mytrs-api-key>
 
 # With shell via HTTP Header
   curl -IH "Authorization: Token token=<mytrs-api-key>" "api_endpoint_here"
@@ -50,7 +50,7 @@ Your API key gives you access to all of your sites under myTRS.
 ## Get All Registrations
 
 ```shell
-curl "https://api.my-trs.com/api/v1/registrations.json"
+curl "https://app.my-trs.com/api/v1/registrations.json"
   -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
@@ -105,7 +105,7 @@ curl "https://api.my-trs.com/api/v1/registrations.json"
 ````
 
 ```shell
-curl "https://api.my-trs.com/api/v1/registrations.xml"
+curl "https://app.my-trs.com/api/v1/registrations.xml"
   -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
@@ -159,9 +159,9 @@ __HTTP REQUEST__
 
 This resource supports JSON and XML responses.
 
-JSON ````GET https://api.my-trs.com/api/v1/registrations.json````
+JSON ````GET https://app.my-trs.com/api/v1/registrations.json````
 
-XML ````GET https://api.my-trs.com/api/v1/registrations.xml````
+XML ````GET https://app.my-trs.com/api/v1/registrations.xml````
 
 __QUERY PARAMETERS__
 
@@ -178,7 +178,7 @@ __QUERY PARAMETERS__
 ## Get a Specific Registration
 
 ```shell
-curl "https://api.my-trs.com/api/v1/registrations/1.json"
+curl "https://app.my-trs.com/api/v1/registrations/1.json"
   -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
@@ -241,7 +241,7 @@ curl "https://api.my-trs.com/api/v1/registrations/1.json"
 
 ### HTTP Request
 
-`GET https://api.my-trs.com/api/v1/registrations/1.json`
+`GET https://app.my-trs.com/api/v1/registrations/1.json`
 
 ### Query Parameters
 
@@ -259,7 +259,7 @@ Assuming you have two sites configured on your myTRS account, and the registrant
 
 
 ```shell
-curl "https://api.my-trs.com/api/v1/registrations/1.json/latest"
+curl "https://app.my-trs.com/api/v1/registrations/1.json/latest"
   -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
@@ -320,7 +320,7 @@ curl "https://api.my-trs.com/api/v1/registrations/1.json/latest"
 
 ### HTTP Request
 
-`GET https://api.my-trs.com/api/v1/registrations/1.json/latest`
+`GET https://app.my-trs.com/api/v1/registrations/1.json/latest`
 
 ### URL Parameters
 
@@ -335,7 +335,7 @@ This will update the checked_in_at field with the current datetime. Once the che
 
 
 ```shell
-curl "https://api.my-trs.com/api/v1/registrations/1.json/check_in"
+curl "https://app.my-trs.com/api/v1/registrations/1.json/check_in"
   -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
@@ -352,7 +352,7 @@ curl "https://api.my-trs.com/api/v1/registrations/1.json/check_in"
 
 ### HTTP Request
 
-`PUT https://api.my-trs.com/api/v1/registrations/1.json/check_in`
+`PUT https://app.my-trs.com/api/v1/registrations/1.json/check_in`
 
 ### URL Parameters
 
@@ -381,7 +381,7 @@ The "authenticated_url" parameter above provides a one-time use address that wil
 
 
 ```shell
-curl -X POST -H "Content-Type: application/json" "https://api.my-trs.com/api/v1/registrations?access_token=<mytrs-api-key>" -d '{
+curl -X POST -H "Content-Type: application/json" "https://app.my-trs.com/api/v1/registrations?access_token=<mytrs-api-key>" -d '{
      "create_user": "true",
      "registration": { 
        "site_id": 1, 
@@ -436,7 +436,7 @@ curl -X POST -H "Content-Type: application/json" "https://api.my-trs.com/api/v1/
 
 ### HTTP Request
 
-`POST https://api.my-trs.com/api/v1/registrations?access_token=<mytrs-api-key>`
+`POST https://app.my-trs.com/api/v1/registrations?access_token=<mytrs-api-key>`
 
 ### URL Parameters
 
@@ -462,7 +462,7 @@ custom_fields     | A key/value collection of custom fields and values for this 
 ## Get All Sites for the Current Client
 
 ```shell
-curl "https://api.my-trs.com/api/v1/sites.json"
+curl "https://app.my-trs.com/api/v1/sites.json"
   -H "Authorization: Token token=<mytrs-api-key>"
 ```
 
@@ -507,7 +507,7 @@ __HTTP REQUEST__
 
 This resource supports returning all sites and associated site groups belonging to the current client. The current client is determined based on your API token.
 
-JSON ````GET https://api.my-trs.com/api/v1/sites.json````
+JSON ````GET https://app.my-trs.com/api/v1/sites.json````
 
 
 __QUERY PARAMETERS__
