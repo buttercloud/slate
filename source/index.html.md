@@ -65,6 +65,7 @@ curl "https://app.my-trs.com/api/v1/registrations.json"
       "created_at":"03:45 PM on Tue, Feb 24th, 15",
       "site_id": 3,
       "client_id": 5,
+      "background_check_result": "Eligible",
       "user":{
          "id":35727,
          "first_name":"Sarah",
@@ -191,6 +192,7 @@ curl "https://app.my-trs.com/api/v1/registrations/1.json"
    "checked_in_at": null,
    "site_id": 3,
    "client_id": 5,
+   "background_check_result": "Eligible",
    "user":{  
       "id":22,
       "first_name":"Homer",
@@ -238,6 +240,8 @@ curl "https://app.my-trs.com/api/v1/registrations/1.json"
 }
 ```
 > Custom fields are dynamically configured by the client and change depending on their site's configuration.
+
+> The `background_check_result` field is only available for sites configured with Verified Volunteers Integration (https://www.verifiedvolunteers.com/)
 
 ### HTTP Request
 
