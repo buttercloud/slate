@@ -1,0 +1,783 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>API Reference</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #151515;
+  background-color: #ac4142;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #505050;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #d0d0d0;
+}
+.highlight .p, .highlight .pi {
+  color: #d0d0d0;
+}
+.highlight .gi {
+  color: #90a959;
+}
+.highlight .gd {
+  color: #ac4142;
+}
+.highlight .gh {
+  color: #6a9fb5;
+  background-color: #151515;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #aa759f;
+}
+.highlight .kc {
+  color: #d28445;
+}
+.highlight .kt {
+  color: #d28445;
+}
+.highlight .kd {
+  color: #d28445;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #90a959;
+}
+.highlight .sr {
+  color: #75b5aa;
+}
+.highlight .si {
+  color: #8f5536;
+}
+.highlight .se {
+  color: #8f5536;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #6a9fb5;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #90a959;
+}
+.highlight .ss {
+  color: #90a959;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;shell&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="shell">shell</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>admin@theregistrationsystem.com</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>Welcome to the myTRS API! You can use our API to create registrants, and grab information about users and registrants on your myTRS event.</p>
+
+<p>We have language bindings in Shell. You can view code examples in the dark area to the right.</p>
+
+<h1 id="authentication">Authentication</h1>
+
+<p>myTRS uses API keys to allow access to your data on the API. You can register a new myTRS API key by contact us at support@theregistrationsystem.com.</p>
+
+<blockquote>
+<p>To authorize, use this code:</p>
+</blockquote>
+<pre class="highlight shell"><code><span class="c"># With shell via GET access_token</span>
+  curl https://app.my-trs.com/api/v1/registrations/1.json?access_token<span class="o">=</span>&lt;mytrs-api-key&gt;
+
+<span class="c"># With shell via HTTP Header</span>
+  curl -IH <span class="s2">"Authorization: Token token=&lt;mytrs-api-key&gt;"</span> <span class="s2">"api_endpoint_here"</span>
+
+</code></pre>
+
+<blockquote>
+<p>Make sure to replace <code class="prettyprint">&lt;mytrs-api-key&gt;</code> with your API key.</p>
+</blockquote>
+
+<aside class="warning">All requests without or with an invalid access_token will return an 402 Unauthorized error.</aside>
+
+<aside class="success">
+Your API key gives you access to all of your sites under myTRS.
+</aside>
+
+<h1 id="registrations">Registrations</h1>
+
+<h2 id="get-all-registrations">Get All Registrations</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://app.my-trs.com/api/v1/registrations.json"</span>
+  -H <span class="s2">"Authorization: Token token=&lt;mytrs-api-key&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">99302</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"registrant_type"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"checked_in_at"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"03:45 PM on Tue, Feb 24th, 15"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"site_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"background_check_result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eligible"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">35727</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"Sarah"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Gret"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"custom_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checked"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"test@example.com"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"address"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"line1"</span><span class="p">:</span><span class="s2">"7929 Spooner Street"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"line2"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Indianapolis"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"state"</span><span class="p">:</span><span class="s2">"IN"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="s2">"46268"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"phone"</span><span class="p">:</span><span class="s2">"317-444-9999"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"company_name"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"T-Shirt Size"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"Small, Medium, Large, XLarge, XXLarge, XXXLarge"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"registration_items"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"t10016"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - "</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"t9651"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training "</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span><span class="err">...</span><span class="w">
+</span></code></pre>
+<pre class="highlight shell"><code>curl <span class="s2">"https://app.my-trs.com/api/v1/registrations.xml"</span>
+  -H <span class="s2">"Authorization: Token token=&lt;mytrs-api-key&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns XML structured like this:</p>
+</blockquote>
+<pre class="highlight xml"><code><span class="nt">&lt;registrations</span> <span class="na">type=</span><span class="s">"array"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;registration&gt;</span>
+    <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>9950131231<span class="nt">&lt;/id&gt;</span>
+    <span class="nt">&lt;registrant-type</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;checked-in-at</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+    <span class="nt">&lt;created-at</span> <span class="na">type=</span><span class="s">"dateTime"</span><span class="nt">&gt;</span>2015-02-24T15:45:45Z<span class="nt">&lt;/created-at&gt;</span>
+    <span class="nt">&lt;user&gt;</span>
+      <span class="nt">&lt;id</span> <span class="na">type=</span><span class="s">"integer"</span><span class="nt">&gt;</span>35727<span class="nt">&lt;/id&gt;</span>
+      <span class="nt">&lt;first-name&gt;</span>Sarah<span class="nt">&lt;/first-name&gt;</span>
+      <span class="nt">&lt;last-name&gt;</span>Gret<span class="nt">&lt;/last-name&gt;</span>
+      <span class="nt">&lt;email&gt;</span>test@example.com<span class="nt">&lt;/email&gt;</span>
+      <span class="nt">&lt;address&gt;</span>
+        <span class="nt">&lt;line1&gt;</span>7929 N. Spooner Street<span class="nt">&lt;/line1&gt;</span>
+        <span class="nt">&lt;line2&gt;&lt;/line2&gt;</span>
+        <span class="nt">&lt;city&gt;</span>Indianapolis<span class="nt">&lt;/city&gt;</span>
+        <span class="nt">&lt;state&gt;</span>IN<span class="nt">&lt;/state&gt;</span>
+        <span class="nt">&lt;zip-code&gt;</span>46268<span class="nt">&lt;/zip-code&gt;</span>
+        <span class="nt">&lt;country&gt;</span>US<span class="nt">&lt;/country&gt;</span>
+        <span class="nt">&lt;phone&gt;</span>317-888-1144<span class="nt">&lt;/phone&gt;</span>
+        <span class="nt">&lt;company-name</span> <span class="na">nil=</span><span class="s">"true"</span><span class="nt">/&gt;</span>
+      <span class="nt">&lt;/address&gt;</span>
+    <span class="nt">&lt;/user&gt;</span>
+    <span class="nt">&lt;custom-fields</span> <span class="na">type=</span><span class="s">"array"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;custom-field&gt;</span>
+        <span class="nt">&lt;name&gt;</span>T-Shirt Size<span class="nt">&lt;/name&gt;</span>
+        <span class="nt">&lt;value&gt;</span>Small, Medium, Large, XLarge, XXLarge, XXXLarge<span class="nt">&lt;/value&gt;</span>
+      <span class="nt">&lt;/custom-field&gt;</span>
+    <span class="nt">&lt;/custom-fields&gt;</span>
+    <span class="nt">&lt;registration-items</span> <span class="na">type=</span><span class="s">"array"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;registration-item&gt;</span>
+        <span class="nt">&lt;id&gt;</span>t10016<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;name&gt;</span>06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - <span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;/registration-item&gt;</span>
+      <span class="nt">&lt;registration-item&gt;</span>
+        <span class="nt">&lt;id&gt;</span>t9651<span class="nt">&lt;/id&gt;</span>
+        <span class="nt">&lt;name&gt;</span>Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training - <span class="nt">&lt;/name&gt;</span>
+      <span class="nt">&lt;/registration-item&gt;</span>
+    <span class="nt">&lt;/registration-items&gt;</span>
+  <span class="nt">&lt;/registration&gt;</span>
+  ...
+</code></pre>
+
+<p><strong>HTTP REQUEST</strong></p>
+
+<p>This resource supports JSON and XML responses.</p>
+
+<p>JSON <code class="prettyprint">GET https://app.my-trs.com/api/v1/registrations.json</code></p>
+
+<p>XML <code class="prettyprint">GET https://app.my-trs.com/api/v1/registrations.xml</code></p>
+
+<p><strong>QUERY PARAMETERS</strong></p>
+
+<table><thead>
+<tr>
+<th style="text-align: left">Parameters</th>
+<th style="text-align: center">Type</th>
+<th style="text-align: center">Description</th>
+<th style="text-align: center">Example</th>
+</tr>
+</thead><tbody>
+<tr>
+<td style="text-align: left">site_id</td>
+<td style="text-align: center">optional</td>
+<td style="text-align: center">Filter results by a specific site</td>
+<td style="text-align: center"><code class="prettyprint">site_id=183</code></td>
+</tr>
+<tr>
+<td style="text-align: left">email</td>
+<td style="text-align: center">optional</td>
+<td style="text-align: center">Filter results by a specific email address on the registration</td>
+<td style="text-align: center"><code class="prettyprint">email=test@my-trs.com</code></td>
+</tr>
+<tr>
+<td style="text-align: left">starts_at</td>
+<td style="text-align: center">optional</td>
+<td style="text-align: center">Filter results by a date range. If you use this, you also have to use &lsquo;ends_at&rsquo;</td>
+<td style="text-align: center"><code class="prettyprint">starts_at=2015-02-1T12:00:00+00:00</code></td>
+</tr>
+<tr>
+<td style="text-align: left">ends_at</td>
+<td style="text-align: center">optional</td>
+<td style="text-align: center">Filter results by a date range. If you use this, you also have to use &#39;starts_at&rsquo;</td>
+<td style="text-align: center"><code class="prettyprint">ends_at=2015-02-25T16:00:00+00:00</code></td>
+</tr>
+<tr>
+<td style="text-align: left">updated_at_gteq</td>
+<td style="text-align: center">optional</td>
+<td style="text-align: center">Filter registrations by when they were last updated (start date). If you use this, you also have to use &#39;updated_at_lteq&rsquo;</td>
+<td style="text-align: center"><code class="prettyprint">updated_at_gteq=2015-02-1T12:00:00+00:00</code></td>
+</tr>
+<tr>
+<td style="text-align: left">updated_at_lteq</td>
+<td style="text-align: center">optional</td>
+<td style="text-align: center">Filter registrations by when they were last updated (end date). If you use this, you also have to use &#39;updated_at_gteq&rsquo;</td>
+<td style="text-align: center"><code class="prettyprint">updated_at_lteq=2015-03-1T12:00:00+00:00</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="get-a-specific-registration">Get a Specific Registration</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://app.my-trs.com/api/v1/registrations/1.json"</span>
+  -H <span class="s2">"Authorization: Token token=&lt;mytrs-api-key&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"registrant_type"</span><span class="p">:</span><span class="s2">"Current TRS Clients"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"checked_in_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"site_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"background_check_result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eligible"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"Homer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Simpson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checked"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"hsimpson@thesimpsons.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"line1"</span><span class="p">:</span><span class="s2">"742 Evergreen Terrace"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"line2"</span><span class="p">:</span><span class="s2">"Bldg B"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Springfield"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"state"</span><span class="p">:</span><span class="s2">"TX"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="s2">"22111"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"phone"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"company_name"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">581</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Organization/Company"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"The Simpsons"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">582</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"TRS Client History"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"1 Year"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">588</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Registration Challenges"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"n/a"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"registration_items"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">42</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Aug 1st, 2014 from 02:00 PM to 03:00 PM"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Aug 5th, 2014 from 03:00 PM to 05:00 PM"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<blockquote>
+<p>Custom fields are dynamically configured by the client and change depending on their site&rsquo;s configuration.</p>
+
+<p>The <code class="prettyprint">background_check_result</code> field is only available for sites configured with Verified Volunteers Integration (https://www.verifiedvolunteers.com/)</p>
+</blockquote>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://app.my-trs.com/api/v1/registrations/1.json</code></p>
+
+<h3 id="query-parameters">Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>The ID of the registration to retrieve</td>
+</tr>
+</tbody></table>
+
+<aside class="success">
+Remember — include &rsquo;.json&rsquo; at the end of your endpoint to ensure you get the right response back!
+</aside>
+
+<h2 id="find-the-latest-registration-belonging-to-the-same-user">Find the Latest Registration Belonging to the Same User</h2>
+
+<p>Assuming you have two sites configured on your myTRS account, and the registrant you&rsquo;re requesting has signed up for both. This action will return the newest registration regardless of which registration ID is provided. The response will also include the &ldquo;requested_id&rdquo; parameter if the registration returned is not the same one as the registration requested.</p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://app.my-trs.com/api/v1/registrations/1.json/latest"</span>
+  -H <span class="s2">"Authorization: Token token=&lt;mytrs-api-key&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"requested_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"registrant_type"</span><span class="p">:</span><span class="s2">"Current TRS Clients"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"checked_in_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">522</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"Homer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"last_name"</span><span class="p">:</span><span class="s2">"Simpson"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"custom_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checked"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"homer@thesimpsons.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"address"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"line1"</span><span class="p">:</span><span class="s2">"742 Evergreen Terrace"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"line2"</span><span class="p">:</span><span class="s2">"Bldg B"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Springfield"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"state"</span><span class="p">:</span><span class="s2">"TX"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"zip_code"</span><span class="p">:</span><span class="s2">"22111"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"country"</span><span class="p">:</span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"phone"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"company_name"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"custom_fields"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">581</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Organization/Company"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"The Simpsons"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">582</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"TRS Client History"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"1 Year"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">588</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Registration Challenges"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"n/a"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"registration_items"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">42</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Aug 1st, 2014 from 02:00 PM to 03:00 PM"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Aug 5th, 2014 from 03:00 PM to 05:00 PM"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">GET https://app.my-trs.com/api/v1/registrations/1.json/latest</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the registration to retrieve</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-registrant-39-s-check-in-time">Update Registrant&rsquo;s Check-In Time</h2>
+
+<p>This will update the checked_in_at field with the current datetime. Once the checked_in_at has been set for a registration, it cannot be changed. Consecutive requests will be ignored and return a 409 Conflict response code.</p>
+<pre class="highlight shell"><code>curl <span class="s2">"https://app.my-trs.com/api/v1/registrations/1.json/check_in"</span>
+  -H <span class="s2">"Authorization: Token token=&lt;mytrs-api-key&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"registrant_type"</span><span class="p">:</span><span class="s2">"Current TRS Clients"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"checked_in_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2014-10-01T13:55:54.000Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">  
+   </span><span class="err">...</span><span class="w">
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">PUT https://app.my-trs.com/api/v1/registrations/1.json/check_in</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ID</td>
+<td>The ID of the registration to check in</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-a-user-amp-registration-combo">Create a User &amp; Registration Combo</h2>
+
+<p>This endpoint allows you to create a combination of a user and registration. &ldquo;Users&rdquo; on myTRS are individuals that can sign up to multiple events under the same client. The benefits of being a user allow pre-population of address information when registering for an event. A &ldquo;Registration&rdquo; represents a single user sign up on a specific site. The registration includes activities and time slots that the user signed up for.</p>
+
+<p>A site_id is required to ensure that both a user and registration can be created. The authenticated URL provided back allows you to redirect the user in a &ldquo;logged in&rdquo; state and send them directly to select their activities.</p>
+
+<h4 id="custom-fields">Custom Fields</h4>
+
+<p>myTRS clients can build custom fields as part of their site. They&rsquo;re often used to collect extra information from registrants on sign up.</p>
+
+<p>If your myTRS site includes custom fields, you can pre-fill these values for registrants by passing in a &ldquo;custom_fields&rdquo; object where the key represents the <em>exact</em> field name, and the value is the field value you want to enter for this registrant.</p>
+
+<h4 id="authenticated-urls">Authenticated URLs</h4>
+
+<p>The &ldquo;authenticated_url&rdquo; parameter above provides a one-time use address that will log your newly created registrant in and allow them to select activities. If your token has expired, you can request a new one by re-POSTING to the above endpoint with an existing email address.</p>
+
+<aside class="warning">Authenticated URLs are one-time use and expire after a period of time. Please avoid storing authentication tokens!</aside>
+<pre class="highlight shell"><code>curl -X POST -H <span class="s2">"Content-Type: application/json"</span> <span class="s2">"https://app.my-trs.com/api/v1/registrations?access_token=&lt;mytrs-api-key&gt;"</span> -d <span class="s1">'{
+     "create_user": "true",
+     "registration": { 
+       "site_id": 1, 
+       "registrant_type_name": "Attendees" 
+     },
+     "user": {                                                                                                                         
+       "email": "petergriffin@familyguy.com",    
+       "first_name": "Peter",
+       "last_name": "Griffin"                                                                                                                                               
+     },
+     "address": { 
+        "line1": "123 Spooner Street",
+        "city" : "Boston",
+        "state": "MA",
+        "country": "US", 
+        "zip_code": "02314"
+     },
+     "custom_fields": {
+        "T-Shirt Size": "Medium",
+        "Hat Size": "X-Large"
+     },
+     "return_authenticated_url": "true"
+}'</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">34572</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"petergriffin@familyguy.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"created_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T14:56:34.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updated_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-02-18T14:56:34.000Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Peter"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Griffin"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invitation_token"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invitation_created_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invitation_sent_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invitation_accepted_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invitation_limit"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invited_by_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invited_by_type"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"invitations_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"group_leader"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"authenticated_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://test.my-trs.com/select_activities?auth_token=xszL4DjnrjfiFyeQAshn"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+
+<h3 id="http-request">HTTP Request</h3>
+
+<p><code class="prettyprint">POST https://app.my-trs.com/api/v1/registrations?access_token=&lt;mytrs-api-key&gt;</code></p>
+
+<h3 id="url-parameters">URL Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+<th>Required?</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>create_user</td>
+<td>Whether to create a user or not</td>
+<td>Yes (must pass in true)</td>
+</tr>
+<tr>
+<td>registration -&gt; site_id</td>
+<td>The TRS site ID to create this registration for</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>user -&gt; email</td>
+<td>User&rsquo;s email address</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>user -&gt; first_name</td>
+<td>User&rsquo;s first name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>user -&gt; last_name</td>
+<td>User&rsquo;s last name</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>address -&gt; line1</td>
+<td>User&rsquo;s street address 1</td>
+<td>site-dependent</td>
+</tr>
+<tr>
+<td>address -&gt; line2</td>
+<td>User&rsquo;s street address 2</td>
+<td>site-dependent</td>
+</tr>
+<tr>
+<td>address -&gt; city</td>
+<td>User&rsquo;s address city</td>
+<td>site-dependent</td>
+</tr>
+<tr>
+<td>address -&gt; state</td>
+<td>User&rsquo;s address state code (ex: NY)</td>
+<td>site-dependent</td>
+</tr>
+<tr>
+<td>address -&gt; country</td>
+<td>User&rsquo;s address country code (ex: US)</td>
+<td>site-dependent</td>
+</tr>
+<tr>
+<td>address -&gt; zip_code</td>
+<td>User&rsquo;s address 5 digit zip code</td>
+<td>site-dependent</td>
+</tr>
+<tr>
+<td>custom_fields</td>
+<td>A key/value collection of custom fields and values for this registrant</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h1 id="sites">Sites</h1>
+
+<h2 id="get-all-sites-for-the-current-client">Get All Sites for the Current Client</h2>
+<pre class="highlight shell"><code>curl <span class="s2">"https://app.my-trs.com/api/v1/sites.json"</span>
+  -H <span class="s2">"Authorization: Token token=&lt;mytrs-api-key&gt;"</span>
+</code></pre>
+
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"subdomain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mytrswebinars"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"site_groups"</span><span class="p">:[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Group A"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Group B"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"subdomain"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mytrs"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"client_id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"site_groups"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Group A"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Group B"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+
+<p><strong>HTTP REQUEST</strong></p>
+
+<p>This resource supports returning all sites and associated site groups belonging to the current client. The current client is determined based on your API token.</p>
+
+<p>JSON <code class="prettyprint">GET https://app.my-trs.com/api/v1/sites.json</code></p>
+
+<p><strong>QUERY PARAMETERS</strong></p>
+
+<p>n/a</p>
+
+          <h1 id="errors">Errors</h1>
+
+<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files&hellip;just save them to the `includes` folder and add them to the top of your `index.md`&rsquo;s frontmatter. Files are included in the order listed.</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request &ndash; Your request sucks</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized &ndash; Your API key is wrong</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden &ndash; The kitten requested is hidden for administrators only</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found &ndash; The specified kitten could not be found</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method Not Allowed &ndash; You tried to access a kitten with an invalid method</td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable &ndash; You requested a format that isn&rsquo;t json</td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone &ndash; The kitten requested has been removed from our servers</td>
+</tr>
+<tr>
+<td>418</td>
+<td>I&rsquo;m a teapot</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests &ndash; You&rsquo;re requesting too many kittens! Slow down!</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error &ndash; We had a problem with our server. Try again later.</td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable &ndash; We&rsquo;re temporarially offline for maintanance. Please try again later.</td>
+</tr>
+</tbody></table>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="shell">shell</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
