@@ -165,6 +165,7 @@ Your API key gives you access to all of your sites under myTRS.
       </span><span class="nt">"created_at"</span><span class="p">:</span><span class="s2">"03:45 PM on Tue, Feb 24th, 15"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"site_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
       </span><span class="nt">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"background_check_result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eligible"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">
          </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">35727</span><span class="p">,</span><span class="w">
          </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"Sarah"</span><span class="p">,</span><span class="w">
@@ -322,6 +323,7 @@ Your API key gives you access to all of your sites under myTRS.
    </span><span class="nt">"checked_in_at"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
    </span><span class="nt">"site_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
    </span><span class="nt">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"background_check_result"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eligible"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"user"</span><span class="p">:{</span><span class="w">  
       </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
       </span><span class="nt">"first_name"</span><span class="p">:</span><span class="s2">"Homer"</span><span class="p">,</span><span class="w">
@@ -371,6 +373,8 @@ Your API key gives you access to all of your sites under myTRS.
 
 <blockquote>
 <p>Custom fields are dynamically configured by the client and change depending on their site&rsquo;s configuration.</p>
+
+<p>The <code class="prettyprint">background_check_result</code> field is only available for sites configured with Verified Volunteers Integration (https://www.verifiedvolunteers.com/)</p>
 </blockquote>
 
 <h3 id="http-request">HTTP Request</h3>
