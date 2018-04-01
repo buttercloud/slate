@@ -193,11 +193,23 @@ Your API key gives you access to all of your sites under myTRS.
       </span><span class="nt">"registration_items"</span><span class="p">:[</span><span class="w">
          </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"t10016"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - "</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - "</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"registerable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TimeSlot"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"checked_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Speedway"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-01T16:02:13+03:00"</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">ISO</span><span class="w"> </span><span class="err">8601</span><span class="w"> </span><span class="err">string</span><span class="w">
+            </span><span class="nt">"ends_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-01T16:02:13+03:00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"activity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Train the Trainer"</span><span class="w">
          </span><span class="p">},</span><span class="w">
          </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"t9651"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training "</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training "</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"registerable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Activity"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"checked_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">nil</span><span class="w"> </span><span class="err">unless</span><span class="w"> </span><span class="err">registerable_type</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">`TimeSlot`</span><span class="w">
+            </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">nil</span><span class="w"> </span><span class="err">unless</span><span class="w"> </span><span class="err">registerable_type</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">`TimeSlot`</span><span class="w">
+            </span><span class="nt">"ends_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">nil</span><span class="w"> </span><span class="err">unless</span><span class="w"> </span><span class="err">registerable_type</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">`TimeSlot`</span><span class="w">
+            </span><span class="nt">"activity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Training Sessions v2"</span><span class="w">
          </span><span class="p">}</span><span class="w">
       </span><span class="p">]</span><span class="w">
    </span><span class="p">}</span><span class="w">
@@ -359,14 +371,26 @@ Your API key gives you access to all of your sites under myTRS.
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
    </span><span class="nt">"registration_items"</span><span class="p">:[</span><span class="w">  
-      </span><span class="p">{</span><span class="w">  
-         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">42</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Aug 1st, 2014 from 02:00 PM to 03:00 PM"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">  
-         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Aug 5th, 2014 from 03:00 PM to 05:00 PM"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"t10016"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - "</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"registerable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TimeSlot"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"checked_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Speedway"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-01T16:02:13+03:00"</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">ISO</span><span class="w"> </span><span class="err">8601</span><span class="w"> </span><span class="err">string</span><span class="w">
+        </span><span class="nt">"ends_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-01T16:02:13+03:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"activity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Train the Trainer"</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"t9651"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training "</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"registerable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"checked_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">nil</span><span class="w"> </span><span class="err">unless</span><span class="w"> </span><span class="err">registerable_type</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">`TimeSlot`</span><span class="w">
+        </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">nil</span><span class="w"> </span><span class="err">unless</span><span class="w"> </span><span class="err">registerable_type</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">`TimeSlot`</span><span class="w">
+        </span><span class="nt">"ends_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">nil</span><span class="w"> </span><span class="err">unless</span><span class="w"> </span><span class="err">registerable_type</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">`TimeSlot`</span><span class="w">
+        </span><span class="nt">"activity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Training Sessions v2"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -449,14 +473,26 @@ Remember — include &rsquo;.json&rsquo; at the end of your endpoint to ensure y
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
    </span><span class="nt">"registration_items"</span><span class="p">:[</span><span class="w">  
-      </span><span class="p">{</span><span class="w">  
-         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">42</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Aug 1st, 2014 from 02:00 PM to 03:00 PM"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">  
-         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">43</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Aug 5th, 2014 from 03:00 PM to 05:00 PM"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"t10016"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - "</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"registerable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TimeSlot"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"checked_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Speedway"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-04-01T16:02:13+03:00"</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">ISO</span><span class="w"> </span><span class="err">8601</span><span class="w"> </span><span class="err">string</span><span class="w">
+        </span><span class="nt">"ends_at"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-08-01T16:02:13+03:00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"activity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Train the Trainer"</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"t9651"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training "</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"registerable_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Activity"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"checked_out"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"location"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">nil</span><span class="w"> </span><span class="err">unless</span><span class="w"> </span><span class="err">registerable_type</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">`TimeSlot`</span><span class="w">
+        </span><span class="nt">"starts_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">nil</span><span class="w"> </span><span class="err">unless</span><span class="w"> </span><span class="err">registerable_type</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">`TimeSlot`</span><span class="w">
+        </span><span class="nt">"ends_at"</span><span class="p">:</span><span class="w"> </span><span class="err">nil</span><span class="p">,</span><span class="w"> </span><span class="err">#</span><span class="w"> </span><span class="err">nil</span><span class="w"> </span><span class="err">unless</span><span class="w"> </span><span class="err">registerable_type</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">`TimeSlot`</span><span class="w">
+        </span><span class="nt">"activity_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Training Sessions v2"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
