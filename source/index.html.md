@@ -93,11 +93,23 @@ curl "https://app.my-trs.com/api/v1/registrations.json"
       "registration_items":[
          {
             "id":"t10016",
-            "name":"06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - "
+            "name":"06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - ",
+            "registerable_type": "TimeSlot",
+            "checked_out": true,
+            "location": "Speedway", 
+            "starts_at": "2018-04-01T16:02:13+03:00", # ISO 8601 string
+            "ends_at": "2018-08-01T16:02:13+03:00",
+            "activity_name": "Train the Trainer"
          },
          {
             "id":"t9651",
-            "name":"Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training "
+            "name":"Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training ",
+            "registerable_type": "Activity",
+            "checked_out": false,
+            "location": nil, # nil unless registerable_type is `TimeSlot`
+            "starts_at": nil, # nil unless registerable_type is `TimeSlot`
+            "ends_at": nil, # nil unless registerable_type is `TimeSlot`
+            "activity_name": "Training Sessions v2"
          }
       ]
    }
@@ -228,14 +240,26 @@ curl "https://app.my-trs.com/api/v1/registrations/1.json"
       }
    ],
    "registration_items":[  
-      {  
-         "id":42,
-         "name":"Aug 1st, 2014 from 02:00 PM to 03:00 PM"
-      },
-      {  
-         "id":43,
-         "name":"Aug 5th, 2014 from 03:00 PM to 05:00 PM"
-      }
+     {
+        "id":"t10016",
+        "name":"06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - ",
+        "registerable_type": "TimeSlot",
+        "checked_out": true,
+        "location": "Speedway", 
+        "starts_at": "2018-04-01T16:02:13+03:00", # ISO 8601 string
+        "ends_at": "2018-08-01T16:02:13+03:00",
+        "activity_name": "Train the Trainer"
+     },
+     {
+        "id":"t9651",
+        "name":"Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training ",
+        "registerable_type": "Activity",
+        "checked_out": false,
+        "location": nil, # nil unless registerable_type is `TimeSlot`
+        "starts_at": nil, # nil unless registerable_type is `TimeSlot`
+        "ends_at": nil, # nil unless registerable_type is `TimeSlot`
+        "activity_name": "Training Sessions v2"
+     }
    ]
 }
 ```
@@ -310,14 +334,26 @@ curl "https://app.my-trs.com/api/v1/registrations/1.json/latest"
       }
    ],
    "registration_items":[  
-      {  
-         "id":42,
-         "name":"Aug 1st, 2014 from 02:00 PM to 03:00 PM"
-      },
-      {  
-         "id":43,
-         "name":"Aug 5th, 2014 from 03:00 PM to 05:00 PM"
-      }
+     {
+        "id":"t10016",
+        "name":"06:00 PM on Thu, Apr 16th, 15 to 07:30 PM on Thu, Apr 16th, 15 - Volunteer Training - ",
+        "registerable_type": "TimeSlot",
+        "checked_out": true,
+        "location": "Speedway", 
+        "starts_at": "2018-04-01T16:02:13+03:00", # ISO 8601 string
+        "ends_at": "2018-08-01T16:02:13+03:00",
+        "activity_name": "Train the Trainer"
+     },
+     {
+        "id":"t9651",
+        "name":"Apr 25th, 2015 from 07:00 AM to 07:15 AM - Speedway Training ",
+        "registerable_type": "Activity",
+        "checked_out": false,
+        "location": nil, # nil unless registerable_type is `TimeSlot`
+        "starts_at": nil, # nil unless registerable_type is `TimeSlot`
+        "ends_at": nil, # nil unless registerable_type is `TimeSlot`
+        "activity_name": "Training Sessions v2"
+     }
    ]
 }
 ```
